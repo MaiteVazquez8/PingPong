@@ -1,7 +1,5 @@
 # Ping Pong
 
-Un jueguito de ping pong con estetica monocromatica ambar.
-
 ## Como jugar
 
 ### Menu inicial
