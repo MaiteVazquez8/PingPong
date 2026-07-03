@@ -1,13 +1,13 @@
 // dibuja el titulo "PING PONG" y un subtitulo
 function dibujarTitulo(sub) {
   // titulo principal en ambar
-  fill(255, 180, 30);
+  fill(171, 134, 219);
   textAlign(CENTER, CENTER);
   textSize(44);
   text("PING PONG", width/2, 75);
 
   // subtitulo
-  fill(255, 180, 30, 70);
+  fill(214, 197, 240, 70);
   noStroke();
   textSize(12);
   text(sub, width/2, 130);
@@ -24,7 +24,7 @@ function dibujarMenu() {
     dibujarBoton(x, y, 300, 50, opciones[i], opcionMenu==i);
   }
 
-  fill(255, 180, 30, 30);
+  fill(214, 197, 240, 30);
   textSize(10);
   text("Flechas - Enter - ESC", width/2, height-30);
 }
@@ -40,7 +40,7 @@ function dibujarPantallaPuntos() {
     dibujarBoton(x, y, 300, 50, opciones[i], opcionMenu==i);
   }
 
-  fill(255, 180, 30, 30);
+  fill(196, 171, 232, 30);
   textSize(10);
   text("Flechas - Enter - ESC", width/2, height-30);
 }
@@ -56,7 +56,7 @@ function dibujarPantallaDificultad() {
     dibujarBoton(x, y, 340, 50, opciones[i], opcionMenu==i);
   }
 
-  fill(255, 180, 30, 30);
+  fill(196, 171, 232, 30);
   textSize(10);
   text("Flechas - Enter - ESC", width/2, height-30);
 }
@@ -69,14 +69,14 @@ function dibujarPantallaListo() {
 
   // texto que parpadea
   let op = 180 + 75*sin(frameCount*0.04);
-  fill(255, 180, 30, op);
+  fill(196, 171, 232, op);
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(16);
   text("TOCA CUALQUIER TECLA PARA INICIAR", width/2, height/2+80);
 
   // comandos
-  fill(255, 180, 30, 35);
+  fill(214, 197, 240, 35);
   textSize(10);
   text("[P] Pausa - [E] Salir", width/2, height-20);
 }
@@ -93,13 +93,13 @@ function dibujarPantallaPausa() {
   rect(0, 0, width, height);
 
   // texto PAUSA
-  fill(255, 180, 30);
+  fill(214, 197, 240);
   textAlign(CENTER, CENTER);
   textSize(42);
   text("PAUSA", width/2, height/2-10);
 
   // opciones
-  fill(255, 180, 30, 100);
+  fill(171, 134, 219, 100);
   textSize(13);
   text("[P] Volver - [E] Salir", width/2, height/2+30);
 }
@@ -132,18 +132,18 @@ function dibujarPantallaFin() {
   }
 
   // ganador
-  fill(255, 180, 30);
+  fill(171, 134, 219);
   textAlign(CENTER, CENTER);
   textSize(34);
   text(gan+" "+txt, width/2, height/2-40);
 
   // resultado
-  fill(255, 180, 30, 180);
+  fill(171, 134, 219, 180);
   textSize(22);
   text(puntaje1+" - "+puntaje2, width/2, height/2+15);
 
   // instruccion para volver
-  fill(255, 180, 30, 60);
+  fill(114, 79, 168, 60);
   textSize(11);
   text("Presiona cualquier tecla", width/2, height/2+55);
 }

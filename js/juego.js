@@ -1,3 +1,10 @@
+//para q los sonidos esten cargados antes de jugar
+function preload() {
+  sonidoRebote = loadSound('sound/reb.wav');
+  sonidoClick = loadSound('sound/selec.wav');
+  sonidoVictoria = loadSound('sound/win.wav');
+  sonidoError = loadSound('sound/error.wav');
+}
 // setup: se ejecuta una vez al inicio
 function setup() {
   createCanvas(800, 600);
@@ -35,6 +42,7 @@ function irAlMenu() {
 
 // confirma la opcion seleccionada en el menu y avanza
 function confirmarSeleccion() {
+  sonidoClick.play();
   if (estado=="menu") {
     modo=opcionMenu; opcionMenu=0; estado="puntos";
   }
@@ -61,7 +69,7 @@ function actualizarCuentaRegresiva() {
 
   // numero grande que se desvanece
   let p = ((3000-t)%1000)/1000;
-  fill(255, 180, 30, 255*(1-p));
+  fill(74, 43, 115, 255 * (1 - p));
   noStroke(); textAlign(CENTER, CENTER); textSize(60+140*(1-p));
   text(""+n, width/2, height/2);
 }
@@ -89,13 +97,13 @@ function actualizarJuego() {
   pelotaY+=pelotaVY;
 
   // rebotar en el techo y el piso
-  if (pelotaY<TP/2) { pelotaY=TP/2; pelotaVY=-pelotaVY; }
-  if (pelotaY>height-TP/2) { pelotaY=height-TP/2; pelotaVY=-pelotaVY; }
+  if (pelotaY<TP/2) { pelotaY=TP/2; pelotaVY=-pelotaVY;sonidoRebote.play(); }
+  if (pelotaY>height-TP/2) { pelotaY=height-TP/2; pelotaVY=-pelotaVY;sonidoRebote.play(); }
 
   // revisar colisiones con las palas
   if (modo==2) {
-    if (pelotaX<TP/2) { pelotaX=TP/2; pelotaVX=-pelotaVX; }
-    if (pelotaX>width-TP/2) { pelotaX=width-TP/2; pelotaVX=-pelotaVX; }
+    if (pelotaX<TP/2) { pelotaX=TP/2; pelotaVX=-pelotaVX;sonidoRebote.play(); }
+    if (pelotaX>width-TP/2) { pelotaX=width-TP/2; pelotaVX=-pelotaVX;sonidoRebote.play(); }
     revisarGolpePala(35, pala1Y, true);
   } else {
     revisarGolpePala(35, pala1Y, true);
@@ -107,7 +115,9 @@ function actualizarJuego() {
     if (pelotaX<-30) {
       particulasPunto(0, pelotaY);
       puntaje2++;
+      sonidoError.play();
       if (puntaje2>=puntosMeta) {
+        sonidoVictoria.play();
         estado="fin";
         dibujarPalas(); dibujarPelota(); dibujarMarcador();
         return;
@@ -117,7 +127,9 @@ function actualizarJuego() {
     else if (pelotaX>width+30) {
       particulasPunto(width, pelotaY);
       puntaje1++;
+      sonidoError.play();
       if (puntaje1>=puntosMeta) {
+        sonidoVictoria.play();
         estado="fin";
         dibujarPalas(); dibujarPelota(); dibujarMarcador();
         return;
@@ -146,6 +158,7 @@ function revisarGolpePala(px, py, izq) {
       pelotaX=px-TP/2-1;
     }
     particulasGolpe(pelotaX, pelotaY);
+    sonidoRebote.play();
     if (modo==2) golpes++;
   }
 }
@@ -210,13 +223,20 @@ function particulasGolpe(x, y) {
   for (let i=0; i<12; i++) {
     let a = random(TWO_PI);
     let v = random(2, 5);
-    particulas.push([x, y, cos(a)*v, sin(a)*v, 255, 180, 30, 30, 30, random(3,6), 0]);
+    particulas.push([x, y, cos(a)*v, sin(a)*v, 214, 197, 240, 30, 30, random(3,6), 0]);
   }
 }
 
 // crea muchas particulas cuando alguien anota un punto
 function particulasPunto(x, y) {
-  let cols = [[255,200,50],[255,180,30],[230,150,20],[200,160,40],[255,210,70],[240,170,10]];
+  let cols = [
+    [214, 197, 240], 
+    [196, 171, 232], 
+    [171, 134, 219], 
+    [243, 232, 255], 
+    [201, 185, 230], 
+    [150, 110, 210]  
+  ];
   for (let i=0; i<50; i++) {
     let a = random(TWO_PI);
     let v = random(2, 8);

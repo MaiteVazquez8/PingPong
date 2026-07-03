@@ -4,7 +4,7 @@
     box-sizing: border-box; 
 }
 body {
-    background: #060e10;
+    background: #070610;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@ canvas {
     display: block;
     border-radius: 12px;
     box-shadow:
-    0 0 60px rgba(255, 180, 30, 0.08),
-    0 0 120px rgba(255, 180, 30, 0.04),
+    0 0 60px rgba(63, 7, 165, 0.08),
+    0 0 120px rgba(59, 39, 75, 0.04),
     inset 0 0 60px rgba(0, 0, 0, 0.3);
 }

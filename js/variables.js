@@ -33,3 +33,8 @@ let tiempoCuenta;
 let tiempoPunto;
 // AP = ancho de la pala, HP = alto de la pala, TP = tamaño de la pelota
 let AP = 14, HP = 100, TP = 14;
+//sonidos
+let sonidoRebote;
+let sonidoClick;
+let sonidoVictoria;
+let sonidoError;
